@@ -56,6 +56,7 @@ class Perfect_mode:
 
     def __init__(self, boy):
         self.boy = boy
+        self.boy.wait_start_time = get_time()
 
     def enter(self, e):
         if A_clicked(e):
@@ -78,6 +79,8 @@ class Perfect_mode:
             self.boy.face_dir = 1
         if(self.boy.x>0 and self.boy.x<800and self.boy.on == True):
             self.boy.x+=self.boy.dir*5
+        if(get_time() - self.boy.wait_start_time > 5):
+            self.boy.state_machine.handle_state_event(('TIMEOUT', None))
     def draw(self):
         if self.boy.face_dir == 1:  # right
             self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x, self.boy.y, 200, 200)
@@ -161,7 +164,7 @@ class Boy:
                 self.SLEEP : {space_down : self.IDLE, right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, A_clicked : self.Perfect_mode},
                 self.IDLE : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.SLEEP, A_clicked : self.Perfect_mode},
                 self.Run : {right_up : self.IDLE, left_up : self.IDLE, right_down : self.IDLE, left_down : self.IDLE, A_clicked : self.Perfect_mode},
-                self.Perfect_mode : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run}
+                self.Perfect_mode : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.IDLE}
             }
 
 
