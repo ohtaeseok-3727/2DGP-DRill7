@@ -58,7 +58,10 @@ class Perfect_mode:
         self.on = False
 
     def enter(self, e):
-
+        if A_clicked(e):
+            self.on = True
+            self.boy.dir = 1
+            self.boy.face_dir = 1
 
     def exit(self, e):
         pass
@@ -139,12 +142,14 @@ class Boy:
         self.IDLE = Idle(self)
         self.SLEEP = Sleep(self)
         self.Run = Run(self)
+        self.Perfect_mode = Perfect_mode(self)
         self.state_machine = StateMachine(
             self.IDLE,
             {
-                self.SLEEP : {space_down : self.IDLE, right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run},
-                self.IDLE : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.SLEEP},
-                self.Run : {right_up : self.IDLE, left_up : self.IDLE, right_down : self.IDLE, left_down : self.IDLE}
+                self.SLEEP : {space_down : self.IDLE, right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, 'a' : self.Perfect_mode},
+                self.IDLE : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.SLEEP, 'a' : self.Perfect_mode},
+                self.Run : {right_up : self.IDLE, left_up : self.IDLE, right_down : self.IDLE, left_down : self.IDLE, 'a' : self.Perfect_mode},
+                self.Perfect_mode : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run}
             }
 
 
