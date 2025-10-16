@@ -146,9 +146,9 @@ class Boy:
         self.state_machine = StateMachine(
             self.IDLE,
             {
-                self.SLEEP : {space_down : self.IDLE, right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, 'a' : self.Perfect_mode},
-                self.IDLE : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.SLEEP, 'a' : self.Perfect_mode},
-                self.Run : {right_up : self.IDLE, left_up : self.IDLE, right_down : self.IDLE, left_down : self.IDLE, 'a' : self.Perfect_mode},
+                self.SLEEP : {space_down : self.IDLE, right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, A_clicked : self.Perfect_mode},
+                self.IDLE : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.SLEEP, A_clicked : self.Perfect_mode},
+                self.Run : {right_up : self.IDLE, left_up : self.IDLE, right_down : self.IDLE, left_down : self.IDLE, A_clicked : self.Perfect_mode},
                 self.Perfect_mode : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run}
             }
 
