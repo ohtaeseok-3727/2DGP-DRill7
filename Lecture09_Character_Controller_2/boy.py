@@ -78,7 +78,7 @@ class Perfect_mode:
             self.boy.dir = 1
             self.boy.face_dir = 1
         if(self.boy.x>0 and self.boy.x<800and self.boy.on == True):
-            self.boy.x+=self.boy.dir*5
+            self.boy.x+=self.boy.dir*8
         if(get_time() - self.boy.wait_start_time > 5):
             self.boy.state_machine.handle_state_event(('TIMEOUT', None))
     def draw(self):
