@@ -20,6 +20,9 @@ def left_down(e):
 def left_up(e):
     return e[0] == 'INPUT' and e[1].type == SDL_KEYUP and e[1].key == SDLK_LEFT
 
+def A_clicked(e):
+    return e[0] == 'e' and e[1].type == SDL_KEYDOWN and e[1].key == 'a'
+
 class Run:
 
     def __init__(self, boy):
@@ -42,6 +45,26 @@ class Run:
         if (self.boy.x < 30): self.boy.x = 30
         if(self.boy.x>0 and self.boy.x<800):
             self.boy.x+=self.boy.dir*5
+    def draw(self):
+        if self.boy.face_dir == 1:  # right
+            self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x, self.boy.y)
+        else:  # face_dir == -1: left
+            self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y)
+
+class Perfect_mode:
+
+    def __init__(self, boy):
+        self.boy = boy
+        self.on = False
+
+    def enter(self, e):
+
+
+    def exit(self, e):
+        pass
+
+    def do(self):
+        self.boy.frame = (self.boy.frame + 1) % 8
     def draw(self):
         if self.boy.face_dir == 1:  # right
             self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x, self.boy.y)
