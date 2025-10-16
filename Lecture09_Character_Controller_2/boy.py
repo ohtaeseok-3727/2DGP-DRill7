@@ -63,6 +63,11 @@ class Perfect_mode:
             self.boy.dir = 1
             self.boy.face_dir = 1
 
+    def exit(self, e):
+        pass
+
+    def do(self):
+        self.boy.frame = (self.boy.frame + 1) % 8
         if (self.boy.x > 770):
             self.boy.x = 770
             self.boy.dir = -1
@@ -71,14 +76,8 @@ class Perfect_mode:
             self.boy.x = 30
             self.boy.dir = 1
             self.boy.face_dir = 1
-        if(self.boy.x>0 and self.boy.x<800):
+        if(self.boy.x>0 and self.boy.x<800and self.on == True):
             self.boy.x+=self.boy.dir*5
-
-    def exit(self, e):
-        pass
-
-    def do(self):
-        self.boy.frame = (self.boy.frame + 1) % 8
     def draw(self):
         if self.boy.face_dir == 1:  # right
             self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x, self.boy.y, 200, 200)
