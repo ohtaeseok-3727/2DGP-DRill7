@@ -47,9 +47,9 @@ class Run:
             self.boy.x+=self.boy.dir*5
     def draw(self):
         if self.boy.face_dir == 1:  # right
-            self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x, self.boy.y)
+            self.boy.image.clip_draw(self.boy.frame * 100, 100, 200, 200, self.boy.x, self.boy.y)
         else:  # face_dir == -1: left
-            self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y)
+            self.boy.image.clip_draw(self.boy.frame * 100, 0, 200, 200, self.boy.x, self.boy.y)
 
 class Perfect_mode:
 
