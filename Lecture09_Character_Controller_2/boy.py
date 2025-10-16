@@ -29,6 +29,7 @@ class Run:
         self.boy = boy
 
     def enter(self, e):
+        self.boy.on = False
         if right_down(e) or left_up(e):
             self.boy.dir = 1
             self.boy.face_dir = 1
@@ -55,11 +56,10 @@ class Perfect_mode:
 
     def __init__(self, boy):
         self.boy = boy
-        self.on = False
 
     def enter(self, e):
         if A_clicked(e):
-            self.on = True
+            self.boy.on = True
             self.boy.dir = 1
             self.boy.face_dir = 1
 
@@ -76,7 +76,7 @@ class Perfect_mode:
             self.boy.x = 30
             self.boy.dir = 1
             self.boy.face_dir = 1
-        if(self.boy.x>0 and self.boy.x<800and self.on == True):
+        if(self.boy.x>0 and self.boy.x<800and self.boy.on == True):
             self.boy.x+=self.boy.dir*5
     def draw(self):
         if self.boy.face_dir == 1:  # right
@@ -122,6 +122,7 @@ class Idle:
         self.boy = boy
 
     def enter(self, e):
+        self.boy.on = False
         self.boy.dir = 0
         self.boy.wait_start_time = get_time()
 
@@ -146,6 +147,7 @@ class Boy:
         self.frame = 0
         self.face_dir = 1
         self.dir = 0
+        self.on = False
         self.image = load_image('animation_sheet.png')
         # 나머지 초기화 코드
 
