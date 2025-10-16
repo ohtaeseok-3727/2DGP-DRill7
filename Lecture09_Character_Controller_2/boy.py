@@ -83,9 +83,9 @@ class Perfect_mode:
             self.boy.state_machine.handle_state_event(('TIMEOUT', None))
     def draw(self):
         if self.boy.face_dir == 1:  # right
-            self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x, self.boy.y, 200, 200)
+            self.boy.image.clip_draw(self.boy.frame * 100, 100, 100, 100, self.boy.x, self.boy.y+30, 200, 200)
         else:  # face_dir == -1: left
-            self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y, 200, 200)
+            self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y+30, 200, 200)
 
 
 class Sleep:
