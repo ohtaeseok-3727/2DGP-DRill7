@@ -52,7 +52,7 @@ class Run:
         else:  # face_dir == -1: left
             self.boy.image.clip_draw(self.boy.frame * 100, 0, 100, 100, self.boy.x, self.boy.y)
 
-class Perfect_mode:
+class Auto_run_mode:
 
     def __init__(self, boy):
         self.boy = boy
@@ -157,14 +157,14 @@ class Boy:
         self.IDLE = Idle(self)
         self.SLEEP = Sleep(self)
         self.Run = Run(self)
-        self.Perfect_mode = Perfect_mode(self)
+        self.Auto_run_mode = Auto_run_mode(self)
         self.state_machine = StateMachine(
             self.IDLE,
             {
-                self.SLEEP : {space_down : self.IDLE, right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, A_clicked : self.Perfect_mode},
-                self.IDLE : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.SLEEP, A_clicked : self.Perfect_mode},
-                self.Run : {right_up : self.IDLE, left_up : self.IDLE, right_down : self.IDLE, left_down : self.IDLE, A_clicked : self.Perfect_mode},
-                self.Perfect_mode : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.IDLE}
+                self.SLEEP : {space_down : self.IDLE, right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, A_clicked : self.Auto_run_mode},
+                self.IDLE : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.SLEEP, A_clicked : self.Auto_run_mode},
+                self.Run : {right_up : self.IDLE, left_up : self.IDLE, right_down : self.IDLE, left_down : self.IDLE, A_clicked : self.Auto_run_mode},
+                self.Auto_run_mode : {right_down : self.Run, left_down : self.Run, right_up : self.Run, left_up : self.Run, time_out : self.IDLE}
             }
 
 
